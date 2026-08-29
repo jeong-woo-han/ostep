@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pomodoro Timer</title>
+
+<!-- Pretendard -->
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
+
+<style>
+
+    :root {
+        --bg: #f5f5f5;
+        --text: #222;
+        --card: #ffffff;
+        --border: #dddddd;
+
+        --study: #3b82f6;
+        --rest: #f97316;
+    }
+
+    body.dark {
+        --bg: #181818;
+        --text: #f5f5f5;
+        --card: #252525;
+        --border: #444;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: var(--bg);
+        color: var(--text);
+
+        font-family: "Pretendard Variable", Pretendard, sans-serif;
+
+        transition:
+            background 0.3s,
+            color 0.3s;
+    }
+
+    .container {
+        width: 420px;
+        max-width: 90%;
+        text-align: center;
+    }
+
+    /* 현재 모드 */
+
+    .mode {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+
+    /* 타이머 */
+
+    .timer {
+        font-size: 100px;
+        font-weight: 700;
+        margin-bottom: 30px;
+
+        color: var(--study);
+
+        transition:
+            color 0.4s,
+            transform 0.25s,
+            opacity 0.25s;
+
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .timer.rest {
+        color: var(--rest);
+    }
+
+
+    /* 전환 애니메이션 */
+
+    .timer.switching-out {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    .timer.switching-in {
+        animation: timerPop 0.45s ease-out;
+    }
+
+    @keyframes timerPop {
+
+        0% {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        60% {
+            opacity: 1;
+            transform: scale(1.06);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+    }
+
+
+    /* 버튼 */
+
+    .controls {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+
+        margin-bottom: 35px;
+    }
+
+    button {
+        border: 1px solid var(--border);
+
+        background: var(--card);
+        color: var(--text);
+
+        padding: 12px 18px;
+
+        border-radius: 8px;
+
+        font-family: inherit;
+        font-size: 16px;
+
+        cursor: pointer;
+
+        transition:
+            transform 0.15s,
+            background 0.3s;
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+    }
+
+    button:active {
+        transform: scale(0.96);
+    }
+
+
+    /* 설정 */
+
+    .settings {
+        background: var(--card);
+
+        border: 1px solid var(--border);
+
+        border-radius: 12px;
+
+        padding: 20px;
+
+        transition:
+            background 0.3s,
+            border 0.3s;
+    }
+
+    .settings h2 {
+        margin-top: 0;
+        font-size: 20px;
+    }
+
+    .setting-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin: 15px 0;
+    }
+
+    input {
+        width: 80px;
+
+        padding: 8px;
+
+        border-radius: 6px;
+
+        border: 1px solid var(--border);
+
+        background: var(--bg);
+        color: var(--text);
+
+        font-family: inherit;
+        font-size: 16px;
+
+        text-align: center;
+    }
+
+
+    /* 테마 버튼 */
+
+    .theme-button {
+        position: fixed;
+
+        right: 25px;
+        bottom: 25px;
+
+        width: 55px;
+        height: 55px;
+
+        border-radius: 50%;
+
+        border: none;
+
+        font-size: 25px;
+
+        background: var(--card);
+
+        box-shadow:
+            0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <div class="mode" id="mode">
+        공부
+    </div>
+
+
+    <div class="timer" id="timer">
+        25:00
+    </div>
+
+
+    <div class="controls">
+
+        <button id="startStopBtn">
+            시작
+        </button>
+
+        <button id="switchBtn">
+            전환
+        </button>
+
+        <button id="resetBtn">
+            초기화
+        </button>
+
+    </div>
+
+
+    <div class="settings">
+
+        <h2>타이머 설정</h2>
+
+        <div class="setting-row">
+
+            <label>
+                공부 시간 (분)
+            </label>
+
+            <input
+                type="number"
+                id="studyTime"
+                value="25"
+                min="1"
+            >
+
+        </div>
+
+
+        <div class="setting-row">
+
+            <label>
+                휴식 시간 (분)
+            </label>
+
+            <input
+                type="number"
+                id="restTime"
+                value="5"
+                min="1"
+            >
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<button
+    class="theme-button"
+    id="themeBtn"
+>
+    ☾
+</button>
+
+
+<script>
+
+let isStudy = true;
+let isRunning = false;
+let interval = null;
+
+
+/* HTML 요소 */
+
+const timer =
+    document.getElementById("timer");
+
+const mode =
+    document.getElementById("mode");
+
+const startStopBtn =
+    document.getElementById("startStopBtn");
+
+const switchBtn =
+    document.getElementById("switchBtn");
+
+const resetBtn =
+    document.getElementById("resetBtn");
+
+const studyInput =
+    document.getElementById("studyTime");
+
+const restInput =
+    document.getElementById("restTime");
+
+
+/* 초기 시간 */
+
+let remainingTime =
+    Number(studyInput.value) * 60;
+
+
+/* =========================
+   시간 화면 업데이트
+========================= */
+
+function updateDisplay() {
+
+    const minutes =
+        Math.floor(remainingTime / 60);
+
+    const seconds =
+        remainingTime % 60;
+
+    timer.textContent =
+        String(minutes).padStart(2, "0")
+        + ":"
+        + String(seconds).padStart(2, "0");
+
+}
+
+
+/* =========================
+   타이머 시작
+========================= */
+
+function startTimer() {
+
+    /* 혹시 기존 타이머가 있으면 제거 */
+
+    clearInterval(interval);
+
+
+    isRunning = true;
+
+    startStopBtn.textContent =
+        "정지";
+
+
+    interval = setInterval(function() {
+
+        if (remainingTime > 0) {
+
+            remainingTime--;
+
+            updateDisplay();
+
+        }
+
+        else {
+
+            /*
+                00:00이 되면
+                공부 ↔ 휴식 전환
+
+                interval은 유지되므로
+                새 시간부터 자동 진행
+            */
+
+            switchMode();
+
+        }
+
+    }, 1000);
+
+}
+
+
+/* =========================
+   타이머 정지
+========================= */
+
+function stopTimer() {
+
+    clearInterval(interval);
+
+    interval = null;
+
+    isRunning = false;
+
+    startStopBtn.textContent =
+        "시작";
+
+}
+
+
+/* =========================
+   공부 / 휴식 전환
+========================= */
+
+function switchMode() {
+
+    /*
+        기존 타이머가
+        작아지면서 사라짐
+    */
+
+    timer.classList.remove("switching-in");
+
+    timer.classList.add("switching-out");
+
+
+    /*
+        0.25초 후 실제 상태 변경
+    */
+
+    setTimeout(function() {
+
+        isStudy = !isStudy;
+
+
+        /* 공부 모드 */
+
+        if (isStudy) {
+
+            mode.textContent =
+                "공부";
+
+            timer.classList.remove("rest");
+
+            remainingTime =
+                Number(studyInput.value) * 60;
+
+        }
+
+
+        /* 휴식 모드 */
+
+        else {
+
+            mode.textContent =
+                "휴식";
+
+            timer.classList.add("rest");
+
+            remainingTime =
+                Number(restInput.value) * 60;
+
+        }
+
+
+        updateDisplay();
+
+
+        /*
+            새로운 타이머 등장
+        */
+
+        timer.classList.remove("switching-out");
+
+        timer.classList.add("switching-in");
+
+
+        setTimeout(function() {
+
+            timer.classList.remove(
+                "switching-in"
+            );
+
+        }, 450);
+
+    }, 250);
+
+}
+
+
+/* =========================
+   시작 / 정지 버튼
+========================= */
+
+startStopBtn.addEventListener(
+    "click",
+    function() {
+
+        if (!isRunning) {
+
+            startTimer();
+
+        }
+
+        else {
+
+            stopTimer();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   강제 전환 버튼
+
+   전환 후 무조건 시작
+========================= */
+
+switchBtn.addEventListener(
+    "click",
+    function() {
+
+        /*
+            이미 실행 중이었다면
+            기존 interval은 그대로 사용
+        */
+
+        if (!isRunning) {
+
+            startTimer();
+
+        }
+
+        switchMode();
+
+    }
+);
+
+
+/* =========================
+   초기화 버튼
+========================= */
+
+resetBtn.addEventListener(
+    "click",
+    function() {
+
+        stopTimer();
+
+
+        if (isStudy) {
+
+            remainingTime =
+                Number(studyInput.value) * 60;
+
+        }
+
+        else {
+
+            remainingTime =
+                Number(restInput.value) * 60;
+
+        }
+
+
+        updateDisplay();
+
+    }
+);
+
+
+/* =========================
+   공부 시간 변경
+========================= */
+
+studyInput.addEventListener(
+    "change",
+    function() {
+
+        if (isStudy && !isRunning) {
+
+            remainingTime =
+                Number(studyInput.value) * 60;
+
+            updateDisplay();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   휴식 시간 변경
+========================= */
+
+restInput.addEventListener(
+    "change",
+    function() {
+
+        if (!isStudy && !isRunning) {
+
+            remainingTime =
+                Number(restInput.value) * 60;
+
+            updateDisplay();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   다크 / 라이트 모드
+========================= */
+
+document
+    .getElementById("themeBtn")
+    .addEventListener(
+        "click",
+        function() {
+
+            document.body.classList.toggle("dark");
+
+        }
+    );
+
+
+/* 초기 화면 */
+
+updateDisplay();
+
+</script>
+
+</body>
+</html>

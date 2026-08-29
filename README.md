@@ -3,7 +3,7 @@
 ### 😃 사지방에서 코딩하는 법
 
 1. github repository를 만듭니다(README.md 포함).
-2. 키보드의 '.' 키를 누르면 VS Code 웹 뷰어 창이 열립니다.
+2. 키보드의 '.' 키를 누르면 VS Code 웹 뷰어 창이 열립니다. (끄는 법 `Ctrl + Shift + .` 또는 좌상단 메뉴 아이콘 클릭 > 리포지토리로 이동)
 3. VS Code 웹 뷰어에서 코딩을 합니다.
 4. VS Code 웹 뷰어는 실행 및 디버깅 불가하므로 OneCompiler(onecompiler.com) 등 웹 컴파일러에서 컴파일, 실행합니다.
 5. 코딩 성공..!

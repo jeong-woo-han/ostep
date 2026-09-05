@@ -111,3 +111,46 @@
    ```
 
 9. 공식 VS Code와 달리 오픈소스 VS Code에는 Microsoft 공식 C/C++ Extension이 없음에 유의.. 어떤 걸 다운 받을지 개인적으로 연구 중입니다.
+
+### 😘 향후 Git을 활용하기 위한 설치와 설정
+
+1. `git`을 설치합니다.
+
+   ```
+   sudo apt-get install git
+   ```
+
+2. 비밀번호를 입력하라는 메시지가 뜨면, `sudo passwd $USER`을 입력하여 비밀번호 설정한 뒤 설치를 재실행합니다.
+
+3. 원하는 디렉토리로 들어가서(`cd 디렉토리`), 클론을 만듭니다. 이렇게 되면 서버의 현재 디렉토리는 내 git 레포지토리의 복사본이 됩니다.
+
+   ```
+   cd 디렉토리
+   git clone 내 레포지토리 주소
+   (예) git close https://github.com/jeong-woo-han/ostep
+   ```
+   
+4. 내 서버를 git에 알립니다. git 상의 작업이 commit될 때 내가 한 작업임이 표시됩니다.
+
+   ```
+   git config --global user.name "내 깃허브 이름"
+   git config --global user.email "내 깃허브 이메일"
+   ```
+
+5. Github에서 토큰을 발급받습니다. 프로필 클릭 -> `Settings` -> `Developer settings` -> `Personal access tokens` -> `Tokens (classic)` -> `Generate new token (classic)` -> 체크박스 `repo` 체크(내 저장소 접근 권한) -> `Generate token` -> 토큰 생성 완료(주의: 페이지를 나가면 다시 볼 수 없으므로 복사해두세요.)
+
+6. 향후 토큰 입력 후에는 서버가 저장해두도록 설정합니다.
+   
+   ```
+   git config --global credential.helper store
+   ```
+
+7. 아래와 같이 hello.c를 만들고 내 레포지토리에 올리는 테스트를 해봅니다.
+
+   ```
+   git add hello.c
+   git commit -m "첫 C프로그램 완성"
+   git push origin main
+   ```
+
+8. `push`를 할 때 `Username`과 `Password`를 요구할 수 있는데, `Password`에는 토큰 복사해서 붙여넣으면 되겠습니다.

@@ -10,9 +10,9 @@
 
 $\quad$  [3.1. Google Cloud Platform(GCP)에서 서버 구축](#google-cloud-platformgcp에서-서버-구축)
 
-$\quad$  [3.2. 서버에 VS Code 설치(code-server)](서버에-VS-Code-설치code-server)
+$\quad$  [3.2. 서버에 VS Code 설치(code-server)](#서버에-vs-code-설치code-server)
 
-$\quad$  [3.3. 향후 Git을 활용하기 위한 설치와 설정](향후-Git을-활용하기-위한-설치와-설정)
+$\quad$  [3.3. 향후 Git을 활용하기 위한 설치와 설정](향후-git을-활용하기-위한-설치와-설정)
 
 # 사지방에서 코딩하는 법
 

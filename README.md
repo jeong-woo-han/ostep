@@ -40,9 +40,9 @@ $\color{red}{\textsf{실패!}}$
    과 같이 컴파일됩니다.
    추가로 `header`는 c 파일 내에서 호출하므로 컴파일 커맨드에 추가할 것은 없습니다.
 
-## 🤓 3. Google Cloud Platform에서 서버 구축하여 VS Code 설치하고 원격 접속
+## 3. Google Cloud Platform에서 서버 구축하여 VS Code 설치하고 원격 접속
 
-### 🤓 Google Cloud Platform(GCP)에서 서버 구축
+### Google Cloud Platform(GCP)에서 서버 구축
 
 * **서버 구축 비용: 0원**
 * **사지방에서도 아래와 같이 8080 포트 적용 가능합니다.**
@@ -69,7 +69,7 @@ $\color{red}{\textsf{실패!}}$
    gcc --version
    ```
 
-### 🤯 서버에 VS Code 설치(code-server)
+### 서버에 VS Code 설치(code-server)
 
 1. `code-server`를 설치합니다.
 
@@ -125,7 +125,7 @@ $\color{red}{\textsf{실패!}}$
 
 9. 공식 VS Code와 달리 오픈소스 VS Code에는 Microsoft 공식 C/C++ Extension이 없음에 유의.. 어떤 걸 다운 받을지 개인적으로 연구 중입니다.
 
-### 😘 향후 Git을 활용하기 위한 설치와 설정
+### 향후 Git을 활용하기 위한 설치와 설정
 
 1. `git`을 설치합니다.
 

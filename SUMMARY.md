@@ -2,7 +2,7 @@
 
 ## Part 1. Virtualization
 
-* `fork()`, `wait()`, `exec()`: `fork()`와 `exec()`을 분리하는 이유는 exec() 전에 환경을 바꾸고, 메모리 I/O를 줄이기 위함.
+* `fork()`, `wait()`, `exec()`: `fork()`와 `exec()`을 분리하는 이유는 `exec()` 전에 환경을 바꾸고, 메모리 I/O를 줄이기 위함.
 * Scheduling: FIFO, SJF, STCF, Round Robin, MLFQ, Ticket, Ticket을 Niceness로 가중하는 방법
 * Segmentation의 적용, base와 bound register
 * Page table을 multi-level로 하여 PDE-PTE 구조

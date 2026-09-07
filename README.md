@@ -173,3 +173,14 @@ $\color{red}{\textsf{실패!}}$
    ```
 
 8. `push`를 할 때 `Username`과 `Password`를 요구할 수 있는데, `Password`에는 토큰 복사해서 붙여넣으면 되겠습니다.
+
+### 데스크탑 파일을 서버에 복사
+
+1. code-server를 설치한 경우 VS Code의 디렉토리 창에 Drag-and-drop하거나, 우클릭 -> [Upload] 클릭하여 파일 선택하면 업로드됩니다.
+
+2. SSH에서 커맨드로 업로드하고자 하는 경우 아래와 같이 입력합니다.
+   
+```
+scp -r "디렉토리" 사용자명@서버IP:/home/사용자명/디렉토리
+(예) scp -r "C:\Users\user\Desktop\hello.c" handaniel11@0.0.0.0:/home/handaniel11/
+```

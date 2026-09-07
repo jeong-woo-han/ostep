@@ -1,4 +1,4 @@
-# OSTEP의 내용 중 기억에 남는 부분을 요약하였습니다.
+# OSTEP 내용 요약입니다.
 
 ## Part 1. Virtualization
 

@@ -1,6 +1,15 @@
-# 서버 구축과 코딩에 관하여
+# 요약
 
-## 😃 사지방에서 코딩하는 법
+사지방에서 코딩할 수 있는 여러 방법을 소개합니다.
+
+1. Github VS Code 웹 뷰어 - 웹 컴파일러 조합을 이용 $\color{blue}{\textsf{성공}}$
+2. 하모니카OS VS Code 이용 $\color{red}{\textsf{실패}}$
+3. Google Cloud Paltform에서 무료로 서버 구축하여 VS Code 설치하고 원격 접속 $\color{blue}{\textsf{성공}}$
+
+
+# 사지방에서 코딩하는 법
+
+## 😃 1. Github VS Code 웹 뷰어 - 웹 컴파일러 조합을 이용 $\color{blue}{\textsf{성공!}}$
 
 1. github repository를 만듭니다(README.md 포함).
 2. 키보드의 '.' 키를 누르면 VS Code 웹 뷰어 창이 열립니다. (끄는 법 `Ctrl + Shift + .` 또는 좌상단 메뉴 아이콘 클릭 > 리포지토리로 이동)
@@ -9,7 +18,7 @@
 5. 코딩 성공..!
 6. 파일은 commit을 해야 클라우드에 올라갑니다. 사지방 컴퓨터는 재부팅 시 파일 삭제되므로 꼭 commit을 해야 합니다. commit은 좌측 메뉴 창의 세 번째 버튼(소스 제어)을 누르면 할 수 있으며, 기록을 위해 메모를 입력할 수 있습니다.
 
-## 🤤 하모니카OS 활용 $\color{red}{\textsf{실패!}}$
+## 🤤 2. 하모니카OS VS Code 이용 $\color{red}{\textsf{실패!}}$
 
 1. 하모니카OS는 리눅스 환경이지만 VS Code가 안 됩니다.  
   
@@ -28,12 +37,12 @@
    과 같이 컴파일됩니다.
    추가로 `header`는 c 파일 내에서 호출하므로 컴파일 커맨드에 추가할 것은 없습니다.
 
-## Google Cloud Platform을 이용한 서버 구축과 VS Code 실행
+## 🤓 3. Google Cloud Paltform에서 무료로 서버 구축하여 VS Code 설치하고 원격 접속 $\color{blue}{\textsf{성공!}}$
 
 ### 🤓 Google Cloud Platform(GCP)에서 서버 구축
 
 * **서버 구축 비용: 0원**
-* **$\color{red}{\textsf{사지방에서는 아래 방식 적용 불가: 8080 포트를 허용하지 않습니다.}}$**
+* **사지방에서도 아래와 같이 8080 포트 적용 가능합니다.**
     
 1. GCP에 구글 로그인하고, 프로젝트 생성 후 [Computer Engine] > [VM 인스턴스] 에서 인스턴스를 만듭니다.
 

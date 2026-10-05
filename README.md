@@ -31,23 +31,8 @@ $\quad$  [3.4. 데스크탑 파일을 서버에 복사](#데스크탑-파일을-
 
 ## 2. 하모니카OS VS Code 이용
 
-1. 하모니카OS는 리눅스 환경이지만 VS Code가 안 됩니다.  
-  
-2. 예를 들어 내 미니 쉘을 만드는 과제라고 가정하면 교수님께서 주신 `tsh.c` 뼈대의 함수 부분을 구현해서 채우고 컴파일, 실행하면 됩니다.
+하모니카OS는 리눅스 환경이지만 사지방에서는 terminal과 VS Code 실행이 불가능합니다.
    
-   ```
-   gcc -o tsh tsh.c
-   ./tsh
-   ```
-3. 만약 파일이 여러 개(`header.h`, `main.c`, `methods.c`)라면,
-   
-   ```
-   gcc -o main main.c methods.c
-   ```
-   
-   과 같이 컴파일됩니다.
-   추가로 `header`는 c 파일 내에서 호출하므로 컴파일 커맨드에 추가할 것은 없습니다.
-
 ## 3. Google Cloud Platform에서 서버 구축하여 VS Code 설치하고 원격 접속
 
 ### Google Cloud Platform(GCP)에서 서버 구축

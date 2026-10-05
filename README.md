@@ -2,11 +2,11 @@
 
 사지방에서 코딩할 수 있는 여러 방법을 소개합니다.
 
-[1. Github VS Code 웹 뷰어와 웹 컴파일러 조합 이용](#1-github-vs-code-웹-뷰어와-웹-컴파일러-조합-이용) $\color{green}{\text{성공!}}$
+[1. Github VS Code 웹 뷰어와 웹 컴파일러 조합 이용](#1-github-vs-code-웹-뷰어와-웹-컴파일러-조합-이용) $\color{green}{\text{가능}}$
 
-[2. 하모니카OS VS Code 이용](#2-하모니카os-vs-code-이용) $\color{red}{\text{실패!}}$
+[2. 하모니카OS VS Code 이용](#2-하모니카os-vs-code-이용) $\color{red}{\text{불가능}}$
 
-[3. Google Cloud Platform에서 무료로 서버 구축하여 VS Code 설치하고 원격 접속](#3-google-cloud-platform에서-서버-구축하여-vs-code-설치하고-원격-접속) $\color{green}{\text{성공!}}$
+[3. Google Cloud Platform에서 무료로 서버 구축하여 VS Code 설치하고 원격 접속](#3-google-cloud-platform에서-서버-구축하여-vs-code-설치하고-원격-접속) $\color{green}{\text{가능}}$
 
 $\quad$  [3.1. Google Cloud Platform(GCP)에서 서버 구축](#google-cloud-platformgcp에서-서버-구축)
 

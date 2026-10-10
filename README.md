@@ -171,3 +171,43 @@ $\quad$  [3.4. 데스크탑 파일을 서버에 복사](#데스크탑-파일을-
 scp -r "디렉토리" 사용자명@서버IP:/home/사용자명/디렉토리
 (예) scp -r "C:\Users\user\Desktop\hello.c" handaniel11@0.0.0.0:/home/handaniel11/
 ```
+
+### Git 저장소(로컬)와 레포지토리(GitHub) 간 연동
+
+1. 아래 명령어가 자주 사용됩니다.
+
+| 명령어 | 기능 |
+| --- | :-- |
+| `git clone URL` | GitHub 저장소를 로컬(서버)에 처음 복제 |
+| `git status` | 변경된 파일 및 Git 상태 확인 |
+| `git add .` | 현재 디렉터리의 변경 사항을 커밋 대상으로 등록 |
+| `git commit -m "메시지"` | 로컬 Git 저장소에 변경 이력 기록 |
+| `git push` | 로컬 커밋을 GitHub에 업로드 |
+| `git pull` | GitHub의 변경 사항을 가져와 현재 브랜치에 반영 |
+| `git log --oneline` | 커밋 기록을 한 줄씩 확인 |
+| `git remote -v` | 연결된 원격 저장소 주소 확인 |
+
+2. 로컬 -> 레포지토리: 변경 상태 확인 -> 커밋 대상에 추가 -> 커밋 -> 업로드
+
+```bash
+git status
+git add .
+git commit -m "Update code"
+git push
+```
+
+3. GitHub 저장소 처음 가져오기
+
+```bash
+cd ~
+git clone https://github.com/사용자명/저장소명.git
+```
+
+4. GitHub의 최신 코드 가져오기
+
+```bash
+cd ~/저장소명
+git pull
+```
+
+**중요한 습관: 여러 컴퓨터에서 같은 프로젝트를 작업한다면 작업 시작 전에 git pull, 작업을 마친 뒤에는 git add → commit → push를 하는 게 좋습니다. 다만 수정 중인 파일이 있다면 pull 전에 먼저 git status로 확인하세요.**

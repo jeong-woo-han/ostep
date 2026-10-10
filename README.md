@@ -133,7 +133,7 @@ $\quad$  [3.4. 데스크탑 파일을 서버에 복사](#데스크탑-파일을-
    ```
    cd 디렉토리
    git clone 내 레포지토리 주소
-   (예) git close https://github.com/jeong-woo-han/ostep
+   (예) git clone https://github.com/jeong-woo-han/ostep
    ```
    
 4. 내 서버를 git에 알립니다. git 상의 작업이 commit될 때 내가 한 작업임이 표시됩니다.
@@ -145,7 +145,7 @@ $\quad$  [3.4. 데스크탑 파일을 서버에 복사](#데스크탑-파일을-
 
 5. Github에서 토큰을 발급받습니다. 프로필 클릭 -> `Settings` -> `Developer settings` -> `Personal access tokens` -> `Tokens (classic)` -> `Generate new token (classic)` -> 체크박스 `repo` 체크(내 저장소 접근 권한) -> `Generate token` -> 토큰 생성 완료(주의: 페이지를 나가면 다시 볼 수 없으므로 복사해두세요.)
 
-6. 향후 토큰 입력 후에는 서버가 저장해두도록 설정합니다.
+6. 향후 토큰 입력 후에는 서버가 저장해두도록 설정합니다. `--global` 옵션이 있으므로 서버의 사용자 전체에 적용됩니다.
    
    ```
    git config --global credential.helper store

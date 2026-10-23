@@ -16,7 +16,7 @@ $\quad$  [3.3. 향후 Git을 활용하기 위한 설치와 설정](#향후-git�
 
 $\quad$  [3.4. 데스크탑 파일을 서버에 복사](#데스크탑-파일을-서버에-복사)
 
-
+$\quad$  [3.4. Git 저장소(로컬)와 레포지토리(GitHub) 간 연동](#git-저장소로컬와-레포지토리github-간-연동)
 
 # 사지방에서 코딩하는 법
 
@@ -57,7 +57,7 @@ $\quad$  [3.4. 데스크탑 파일을 서버에 복사](#데스크탑-파일을-
 
 4. 쉘에서 기본적인 툴을 설치할 수 있습니다. Ubuntu의 최신 프로그램 목록을 새로고침하고, `gcc`(컴파일러)와 `gdb`(디버거)를 아래와 같이 한 번에 설치한 후 설치를 확인합니다.
  
-   ```
+   ```bash
    sudo apt update && sudo apt install build-essential gdb -y
    gcc --version
    ```
@@ -66,13 +66,13 @@ $\quad$  [3.4. 데스크탑 파일을 서버에 복사](#데스크탑-파일을-
 
 1. `code-server`를 설치합니다.
 
-   ```
+   ```bash
    curl -fsSL https://code-server.dev | sh
    ```
 
 2. 서버 밖에서도 접속할 수 있도록 설정값을 바꿉니다. 설정값은 `~/.config/code-server/config.yaml`에 있습니다. 따라서 텍스트 편집을 위해 `nano`를 설치하고, `nano`를 통해 편집합니다.
 
-   ```
+   ```bash
    sudo apt install nano -y
    nano ~/.config/code-server/config.yaml
    ```
@@ -84,7 +84,7 @@ $\quad$  [3.4. 데스크탑 파일을 서버에 복사](#데스크탑-파일을-
 
 3. 서버가 켜질 때마다 `code-server`가 켜지도록 설정합니다. 또한 백그라운드에서 실행되도록 설정했기 때문에 `SSH`에서 `Ctrl + C`로 `code-server`를 꺼도 VS Code가 항상 켜져있습니다.
 
-   ```
+   ```bash
    sudo systemctl enable --now code-server@$USER
    ```
 
@@ -105,14 +105,14 @@ $\quad$  [3.4. 데스크탑 파일을 서버에 복사](#데스크탑-파일을-
 
 7. 이제 모든 준비가 되었으므로 `hello.c`와 같은 간단한 코드를 만들고 아래와 같이 VS Code 내 터미널 창에서 컴파일 후 실행해봅니다.
 
-   ```
+   ```bash
    gcc -o hello hello.c
    ./hello
    ```
 
 8. 정상적으로 실행되었다면 다행이나, 만약 자꾸 꺼진다면 RAM 용량 부족이 원인일 가능성이 크므로 가상 메모리를 추가하는 아래 명령을 `SSH`에 입력해줍니다. 부족한 1GB 램 옆에 2GB짜리 강력한 가상 메모리를 붙여주고, 튕겨서 잠들어있던 웹 VS Code 엔진(`code-server`)을 다시 깨운 것입니다. 명령어 정상 실행 후에는 표가 뜹니다.
    
-   ```
+   ```bash
    sudo fallocate -l 2G /swapfile && sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile && echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab && sudo systemctl restart code-server@$USER && free -h
    ```
 
@@ -122,7 +122,7 @@ $\quad$  [3.4. 데스크탑 파일을 서버에 복사](#데스크탑-파일을-
 
 1. `git`을 설치합니다.
 
-   ```
+   ```bash
    sudo apt-get install git
    ```
 
@@ -130,7 +130,7 @@ $\quad$  [3.4. 데스크탑 파일을 서버에 복사](#데스크탑-파일을-
 
 3. 원하는 디렉토리로 들어가서(`cd 디렉토리`), 클론을 만듭니다. 이렇게 되면 서버의 현재 디렉토리는 내 git 레포지토리의 복사본이 됩니다.
 
-   ```
+   ```bash
    cd 디렉토리
    git clone 내 레포지토리 주소
    (예) git clone https://github.com/jeong-woo-han/ostep
@@ -138,7 +138,7 @@ $\quad$  [3.4. 데스크탑 파일을 서버에 복사](#데스크탑-파일을-
    
 4. 내 서버를 git에 알립니다. git 상의 작업이 commit될 때 내가 한 작업임이 표시됩니다.
 
-   ```
+   ```bash
    git config --global user.name "내 깃허브 이름"
    git config --global user.email "내 깃허브 이메일"
    ```
@@ -147,13 +147,13 @@ $\quad$  [3.4. 데스크탑 파일을 서버에 복사](#데스크탑-파일을-
 
 6. 향후 토큰 입력 후에는 서버가 저장해두도록 설정합니다. `--global` 옵션이 있으므로 서버의 사용자 전체에 적용됩니다.
    
-   ```
+   ```bash
    git config --global credential.helper store
    ```
 
 7. 아래와 같이 hello.c를 만들고 내 레포지토리에 올리는 테스트를 해봅니다.
 
-   ```
+   ```bash
    git add hello.c
    git commit -m "첫 C프로그램 완성"
    git push origin main
@@ -167,7 +167,7 @@ $\quad$  [3.4. 데스크탑 파일을 서버에 복사](#데스크탑-파일을-
 
 2. `SSH`에서 커맨드로 업로드하고자 하는 경우 아래와 같이 입력합니다.
    
-```
+```bash
 scp -r "디렉토리" 사용자명@서버IP:/home/사용자명/디렉토리
 (예) scp -r "C:\Users\user\Desktop\hello.c" handaniel11@0.0.0.0:/home/handaniel11/
 ```
@@ -187,23 +187,32 @@ scp -r "디렉토리" 사용자명@서버IP:/home/사용자명/디렉토리
 | `git log --oneline` | 커밋 기록을 한 줄씩 확인 |
 | `git remote -v` | 연결된 원격 저장소 주소 확인 |
 
-2. 로컬 -> 레포지토리: 변경 상태 확인 -> 커밋 대상에 추가 -> 커밋 -> 업로드
+2. GitHub 저장소 처음 가져오기
+
+처음 로컬 폴더를 git 저장소로 추가할 때 최상위 디렉토리(홈)로 이동한 후 clone 합니다.
+
+이때, 새폴더명을 생략하면 GitHub의 저장소명과 같은 이름의 새 폴더를 만들어 Git 저장소를 생성하므로 걱정하지 마세요.
 
 ```bash
+cd ~
+git clone https://github.com/사용자명/저장소명.git 새폴더명
+```
+
+3. 로컬에서 레포지토리로 복사(GitHub의 코드 최신화하기)
+
+해당 저장소로 이동 -> 변경 상태 확인 -> 커밋 대상으로 add -> commit -> push
+
+```bash
+cd ~/저장소명
 git status
 git add .
 git commit -m "Update code"
 git push
 ```
 
-3. GitHub 저장소 처음 가져오기
+4. 레포지토리에서 로컬로 복사(GitHub의 최신 코드 가져오기)
 
-```bash
-cd ~
-git clone https://github.com/사용자명/저장소명.git
-```
-
-4. GitHub의 최신 코드 가져오기
+해당 저장소로 이동 -> pull
 
 ```bash
 cd ~/저장소명
